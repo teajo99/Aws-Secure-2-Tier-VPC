@@ -12,7 +12,7 @@ I created and configured:
 •	Security Groups
 •	EC2 Test Instances
 I also verified which subnet was public and which was private.
-
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/Two-tier%20AWS%20architecture%20diagram.png)
 ________________________________________
 Creating the VPC
 A Virtual Private Cloud (VPC) is an isolated private network in AWS.
@@ -37,6 +37,7 @@ This ensures that any EC2 instance launched in the public subnet automatically r
 The difference between the subnets:
 •	Public Subnet: Can communicate directly with the internet
 •	Private Subnet: Cannot communicate directly with the internet
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/public%20and%20private%20subnet%20.png)
 
 ________________________________________
 Creating the Internet Gateway (IGW)
@@ -45,6 +46,8 @@ Steps completed:
 1.	Created the Internet Gateway
 2.	Attached it to the VPC
 This allowed the public subnet to communicate with the internet.
+
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/internet%20gateway.png)
 ________________________________________
 Creating Route Tables
 Route tables control where network traffic is sent.
@@ -52,8 +55,13 @@ I created a public route table and added this route:
 Destination: 0.0.0.0/0
 Target: Internet Gateway
 This allows internet traffic to reach the public subnet.
+
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/route%20table%201.png)
+
 Then I associated the public route table with the public subnet.
 At this stage, the private subnet still only routed traffic inside the VPC (10.0.0.0/16).
+
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/subnet%20association.png)
 ________________________________________
 Creating the NAT Gateway
 A NAT Gateway allows private subnets to access the internet safely without exposing them to inbound internet traffic.
@@ -64,6 +72,8 @@ After creating the NAT Gateway, I updated the private route table and added:
 Destination: 0.0.0.0/0
 Target: NAT Gateway
 This allowed the private subnet to access the internet for outbound traffic only.
+
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/nat%20gateway.png)
 ________________________________________
 Creating Security Groups
 Security Groups act as virtual firewalls that control traffic to EC2 instances.
@@ -72,21 +82,27 @@ Public Security Group
 Inbound Rules:
 •	SSH (Port 22) — Allows remote login
 •	HTTP (Port 80) — Allows web traffic
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/public%20sg.png)
 ________________________________________
 Private Security Group
 Inbound Rules:
 •	SSH (Port 22) — Allows SSH access only from the public security group
 This setup allows secure SSH access from the public EC2 instance to the private EC2 instance without exposing the private instance to the internet.
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/private%20sg.png)
+
 ________________________________________
 Launching EC2 Instances
 An EC2 instance is a virtual computer in the cloud.
 I launched:
 •	One EC2 instance in the public subnet
 •	One EC2 instance in the private subnet
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/public%20ec2%20instance.png)
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/private%20ec2%20instance.png)
 Important settings:
 •	Public EC2 instance: Assigned a public IP
 •	Private EC2 instance: Public IP disabled to keep it secure
 If the private instance needs internet access, it uses the NAT Gateway.
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/nat%20gateway%20in%20public%20subnet.png)
 ________________________________________
 Testing Connectivity
 I tested SSH access using Git Bash.
@@ -94,11 +110,13 @@ At first, I received this error:
 ssh: connect to host port 22: Connection timed out
 This happened because I accidentally added an extra number to the IP address.
 After correcting the IP address, the connection worked successfully.
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/ssh.png)
 ________________________________________
 Testing Internet Access from Private Instance
 To confirm that the NAT Gateway was working, I tested internet connectivity from the private EC2 instance using:
 curl -I https://www.amazon.com
 The command worked successfully, confirming that the private instance could access the internet through the NAT Gateway.
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/internet%20connection.png)
 ________________________________________
 Summary
 In this project, I successfully built a secure 2-tier AWS network architecture.
