@@ -23,7 +23,7 @@ I enabled:
 •	DNS Resolution
 •	DNS Hostnames
 These settings are important because they allow EC2 instances to have usable DNS names.
-!(image alt)(https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/00b2dc9fd0f76d3d9f824032f9e315b43facb82d/vpc%20created%20tea.png)
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/00b2dc9fd0f76d3d9f824032f9e315b43facb82d/vpc%20created%20tea.png)
 ________________________________________
 Creating Public and Private Subnets
 Next, I created two subnets:
