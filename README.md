@@ -23,7 +23,8 @@ I enabled:
 •	DNS Resolution
 •	DNS Hostnames
 These settings are important because they allow EC2 instances to have usable DNS names.
-![creating vpc](image/vpc created tea.png)
+![creating vpc](<img width="1653" height="688" alt="image" src="https://github.com/user-attachments/assets/3baa478d-908b-4769-893c-e472102aa723" />
+)
 ________________________________________
 Creating Public and Private Subnets
 Next, I created two subnets:
