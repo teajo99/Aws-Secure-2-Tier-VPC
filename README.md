@@ -73,7 +73,7 @@ Destination: 0.0.0.0/0
 Target: NAT Gateway
 This allowed the private subnet to access the internet for outbound traffic only.
 
-![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/nat%20gateway.png)
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/682d66c8af8fbd2cdcd0f1e2960a71e777a50590/nat%20gateway%20in%20public%20subnet.png)
 ________________________________________
 Creating Security Groups
 Security Groups act as virtual firewalls that control traffic to EC2 instances.
