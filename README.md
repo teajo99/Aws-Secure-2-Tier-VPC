@@ -47,7 +47,7 @@ Steps completed:
 2.	Attached it to the VPC
 This allowed the public subnet to communicate with the internet.
 
-![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/77e3124a73a8fefb2f87b91b305e14a8328446fe/internet%20gateway.png)
+![image alt](https://github.com/teajo99/Aws-Secure-2-Tier-VPC/blob/d9dd589d2b649d5868a0fa5e1c50e4431ebdd0a1/nat%20gateway%20in%20public%20subnet.png)
 ________________________________________
 Creating Route Tables
 Route tables control where network traffic is sent.
